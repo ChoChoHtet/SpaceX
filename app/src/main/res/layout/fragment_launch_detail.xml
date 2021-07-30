@@ -2,10 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="mission"
             type="com.chohtet.android.codetest.spacex.MissionQuery.Mission" />
+
         <variable
             name="launch"
             type="com.chohtet.android.codetest.spacex.entity.LaunchEntity" />
@@ -14,8 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/common_margin"
-        android:layout_marginEnd="@dimen/common_margin"
+        android:paddingStart="@dimen/common_margin"
+        android:paddingEnd="@dimen/common_margin"
         tools:context=".ui.LaunchDetailFragment">
 
 
@@ -65,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{mission.name}"
+            android:text='@{mission.name!=null ?@string/mission_name(mission.name):@string/mission_name("")}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,9 +78,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_mission_twitter"
             style="@style/CommonLabelStyle"
+            hyperLinkText='@{mission.twitter!=null?@string/mission_twitter_link(mission.twitter,mission.twitter):@string/mission_twitter_link("","")}'
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{mission.twitter}"
+            android:linksClickable="true"
             app:layout_constraintEnd_toEndOf="@+id/tv_mission_name"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@+id/tv_mission_name"
@@ -87,9 +91,9 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_mission_wiki"
             style="@style/CommonLabelStyle"
+            hyperLinkText='@{mission.wikipedia!=null ? @string/mission_wikipedia_link(mission.wikipedia,mission.wikipedia): @string/mission_wikipedia_link("","")}'
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{mission.wikipedia}"
             app:layout_constraintEnd_toEndOf="@+id/tv_mission_twitter"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@+id/tv_mission_twitter"
@@ -101,17 +105,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="tv_launch_site_name,tv_launch_detail,tv_mission_title,tv_mission_name,tv_mission_twitter,tv_mission_wiki" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/anim_view"
-            android:visibility="gone"
             android:layout_width="@dimen/lottie_view_height"
             android:layout_height="@dimen/lottie_view_height"
-            app:layout_constraintVertical_bias=".5"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintVertical_bias=".5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

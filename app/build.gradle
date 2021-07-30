@@ -71,12 +71,6 @@ dependencies {
     // Coroutine Image Loader
     implementation "io.coil-kt:coil:1.1.1"
 
-    //Retrofit library for REST adapter
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-
-    //Retrofit library for converting JSON
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
     //Okhttp library for logging request/response and headers
     implementation "com.squareup.okhttp3:logging-interceptor:$ok_http_logger_version"
 
