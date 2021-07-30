@@ -1,0 +1,40 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        kotlin_version = "1.5.10"
+        apollo_version = "2.5.4"
+        fragment_component_version = "2.3.5"
+        retrofit_version = "2.6.2"
+        ok_http_logger_version = "4.2.2"
+        rx_java_version = "2.2.9"
+        rx_android_logger_version = "2.1.1"
+        dagger_version="2.35.1"
+        lottie_version = '4.0.0'
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+       // classpath "com.apollographql.apollo:apollo-gradle-plugin:$apollo_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$fragment_component_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+         // Warning: this repository is going to shut down soon
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

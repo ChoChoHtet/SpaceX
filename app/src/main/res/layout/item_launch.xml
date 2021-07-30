@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="launch"
+            type="com.chohtet.android.codetest.spacex.GetLaunchListQuery.Launch" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_launch"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                imageUrl="@{launch.ships}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_launch_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{launch.launch_site.site_name_long}"
+                style="@style/CommonLabelStyle"
+                android:layout_marginStart="@dimen/common_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_launch" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_launch_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{launch.launch_date_utc.toString()}"
+                style="@style/CommonLabelStyle"
+                app:layout_constraintEnd_toEndOf="@+id/tv_launch_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_launch_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_launch_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

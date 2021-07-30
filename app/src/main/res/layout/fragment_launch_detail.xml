@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="mission"
+            type="com.chohtet.android.codetest.spacex.MissionQuery.Mission" />
+        <variable
+            name="launch"
+            type="com.chohtet.android.codetest.spacex.entity.LaunchEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/common_margin"
+        android:layout_marginEnd="@dimen/common_margin"
+        tools:context=".ui.LaunchDetailFragment">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_launch_site_name"
+            style="@style/CommonLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{launch.siteName}"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Launch site name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_launch_detail"
+            style="@style/CommonLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{launch.details}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/tv_launch_site_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_launch_site_name"
+            tools:text="launch details" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_mission_title"
+            style="@style/CommonLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/mission_information"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_launch_detail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_mission_name"
+            style="@style/CommonLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{mission.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mission_title"
+            tools:text="mission name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_mission_twitter"
+            style="@style/CommonLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{mission.twitter}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_mission_name"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/tv_mission_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_mission_name"
+            tools:text="mission twitter" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_mission_wiki"
+            style="@style/CommonLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{mission.wikipedia}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_mission_twitter"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/tv_mission_twitter"
+            app:layout_constraintTop_toBottomOf="@+id/tv_mission_twitter"
+            tools:text="mission wikipedia" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_launch_site_name,tv_launch_detail,tv_mission_title,tv_mission_name,tv_mission_twitter,tv_mission_wiki" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/anim_view"
+            android:visibility="gone"
+            android:layout_width="@dimen/lottie_view_height"
+            android:layout_height="@dimen/lottie_view_height"
+            app:layout_constraintVertical_bias=".5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

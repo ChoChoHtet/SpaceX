@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="common_padding">6dp</dimen>
+    <dimen name="common_margin">16dp</dimen>
+    <dimen name="lottie_view_height">250dp</dimen>
+
+</resources>

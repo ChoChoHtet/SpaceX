@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/launchListFragment">
+
+    <fragment
+        android:id="@+id/launchListFragment"
+        android:name="com.chohtet.android.codetest.spacex.ui.LaunchListFragment"
+        android:label="SpaceX"
+        tools:layout="@layout/fragment_launch_list" >
+        <action
+            android:id="@+id/action_launchListFragment_to_launchDetailFragment"
+            app:destination="@id/launchDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/launchDetailFragment"
+        android:name="com.chohtet.android.codetest.spacex.ui.LaunchDetailFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_launch_detail" >
+      <argument
+          android:name="item"
+          app:nullable="true"
+          app:argType="com.chohtet.android.codetest.spacex.entity.LaunchEntity"
+          />
+    </fragment>
+</navigation>
