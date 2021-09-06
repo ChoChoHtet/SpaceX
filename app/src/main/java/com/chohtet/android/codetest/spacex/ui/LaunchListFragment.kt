@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
+import com.android.codetest.domain.model.Launch
 import com.chohtet.android.codetest.spacex.GetLaunchListQuery
 import com.chohtet.android.codetest.spacex.TAG
 import com.chohtet.android.codetest.spacex.databinding.FragmentLaunchListBinding
@@ -90,11 +91,11 @@ class LaunchListFragment : DaggerFragment(), LaunchAdapter.ClickListener {
         })
     }
 
-    override fun onItemClick(item: GetLaunchListQuery.Launch) {
+    override fun onItemClick(item: Launch) {
         //Toast.makeText(requireContext(), "Clicked", Toast.LENGTH_SHORT).show()
         val entity = LaunchEntity(
             id = item.id,
-            siteName = item.launch_site?.site_name_long,
+            siteName = item.launch_site.site_name_long,
             details = item.details,
             missionId = item.mission_id
         )

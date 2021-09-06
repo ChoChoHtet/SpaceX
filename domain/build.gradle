@@ -1,0 +1,44 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //Rx java and Rx Android libraries
+    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_logger_version"
+//    //dagger
+//    implementation "com.google.dagger:dagger-android:$dagger_version"
+//    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+//    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+//    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    // Dagger DI
+    api "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+   // implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+}
+//compileKotlin {
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
+//}
+//compileTestKotlin {
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
+//}

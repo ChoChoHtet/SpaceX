@@ -3,9 +3,10 @@ package com.chohtet.android.codetest.spacex.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.chohtet.android.codetest.spacex.GetLaunchListQuery
-import com.chohtet.android.codetest.spacex.MissionQuery
-import com.chohtet.android.codetest.spacex.repository.LaunchRepository
+import com.android.codetest.domain.model.Launch
+import com.android.codetest.domain.model.Mission
+import com.android.codetest.domain.usecases.impl.GetLaunchListUseCase
+import com.android.codetest.domain.usecases.impl.GetMissionUseCase
 import com.chohtet.android.codetest.spacex.utils.ViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,19 +15,20 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LaunchViewModel @Inject constructor(
-    private val launchRepository: LaunchRepository
+    private val launchListUseCase: GetLaunchListUseCase,
+    private val missionUseCase: GetMissionUseCase
 ) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
-    private val _launchList by lazy { MutableLiveData<ViewState<List<GetLaunchListQuery.Launch?>?>>() }
-    private val _mission by lazy { MutableLiveData<ViewState<MissionQuery.Mission>>() }
-    val launchesList: LiveData<ViewState<List<GetLaunchListQuery.Launch?>?>>
+    private val _launchList by lazy { MutableLiveData<ViewState<List<Launch?>?>>() }
+    private val _mission by lazy { MutableLiveData<ViewState<Mission>>() }
+    val launchesList: LiveData<ViewState<List<Launch?>?>>
         get() = _launchList
-    val mission: LiveData<ViewState<MissionQuery.Mission>>
+    val mission: LiveData<ViewState<Mission>>
         get() = _mission
 
     fun getLaunchList() {
         addDisposable(
-            launchRepository.queryLaunchList()
+            launchListUseCase.invoke()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
@@ -36,7 +38,7 @@ class LaunchViewModel @Inject constructor(
                     { result ->
                         _launchList.value = ViewState.Success(result)
                     }, { error ->
-                        _launchList.value = ViewState.Error(error.message)
+                        //_launchList.value = ViewState.Error(error.message)
                     }
                 )
         )
@@ -44,7 +46,7 @@ class LaunchViewModel @Inject constructor(
 
     fun getMission(id: String) {
         addDisposable(
-            launchRepository.queryMission(id)
+            missionUseCase.invoke(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
@@ -54,7 +56,7 @@ class LaunchViewModel @Inject constructor(
                     { result ->
                         _mission.value = ViewState.Success(result)
                     }, { error ->
-                        _mission.value = ViewState.Error(error.message)
+                        //_mission.value = ViewState.Error(error.message)
                     }
                 )
         )

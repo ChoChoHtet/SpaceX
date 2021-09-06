@@ -1,8 +1,10 @@
 package com.chohtet.android.codetest.spacex.di
 
+import com.android.codetest.data.mapper.LaunchMapper
+import com.android.codetest.data.mapper.MissionMapper
+import com.android.codetest.data.services.ApiService
 import com.apollographql.apollo.ApolloClient
 import com.chohtet.android.codetest.spacex.BuildConfig
-import com.chohtet.android.codetest.spacex.network.ApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -35,5 +37,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(apolloClient: ApolloClient): ApiService = ApiService(apolloClient)
+    fun provideApiService(
+        apolloClient: ApolloClient,
+        launchMapper: LaunchMapper,
+        missionMapper: MissionMapper
+    ):ApiService = ApiService(apolloClient,launchMapper,missionMapper)
+
+//    @Provides
+//    @Singleton
+//    fun provideApiService(apolloClient: ApolloClient): ApiService = ApiService(apolloClient)
 }

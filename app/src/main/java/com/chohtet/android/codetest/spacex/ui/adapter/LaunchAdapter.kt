@@ -17,13 +17,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.android.codetest.domain.model.Launch
+import com.android.codetest.domain.model.Ship
 import com.chohtet.android.codetest.spacex.GetLaunchListQuery
 import com.chohtet.android.codetest.spacex.R
 import com.chohtet.android.codetest.spacex.databinding.ItemLaunchBinding
 
 
 class LaunchAdapter(private val listener: ClickListener) : ListAdapter<
-        GetLaunchListQuery.Launch, LaunchAdapter.LaunchViewHolder>(LaunchDiffUtil()) {
+        Launch, LaunchAdapter.LaunchViewHolder>(LaunchDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LaunchViewHolder {
         val binding = DataBindingUtil.inflate<ItemLaunchBinding>(
@@ -41,7 +43,7 @@ class LaunchAdapter(private val listener: ClickListener) : ListAdapter<
         private val clickListener: ClickListener
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(items: GetLaunchListQuery.Launch) {
+        fun bind(items: Launch) {
             binding.launch = items
             binding.root.setOnClickListener {
                 clickListener.onItemClick(items)
@@ -50,14 +52,14 @@ class LaunchAdapter(private val listener: ClickListener) : ListAdapter<
     }
 
     interface ClickListener {
-        fun onItemClick(item: GetLaunchListQuery.Launch)
+        fun onItemClick(item: Launch)
     }
 
 }
 
 @BindingAdapter("imageUrl")
-fun setImageUrl(imageView: AppCompatImageView, shipUrl: List<GetLaunchListQuery.Ship>) {
-    if (!shipUrl.isNullOrEmpty() && !shipUrl[0].image.isNullOrEmpty()) {
+fun setImageUrl(imageView: AppCompatImageView, shipUrl: List<Ship>) {
+    if (!shipUrl.isNullOrEmpty() && shipUrl[0].image.isNotEmpty()) {
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         imageView.load(shipUrl[0].image) {
             crossfade(false)

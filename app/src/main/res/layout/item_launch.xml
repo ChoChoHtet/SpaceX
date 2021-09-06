@@ -7,7 +7,7 @@
 
         <variable
             name="launch"
-            type="com.chohtet.android.codetest.spacex.GetLaunchListQuery.Launch" />
+            type="com.android.codetest.domain.model.Launch" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

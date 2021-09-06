@@ -1,19 +1,20 @@
 package com.chohtet.android.codetest.spacex.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
+import com.android.codetest.domain.model.Launch
 import com.chohtet.android.codetest.spacex.GetLaunchListQuery
 
-class LaunchDiffUtil : DiffUtil.ItemCallback<GetLaunchListQuery.Launch>() {
+class LaunchDiffUtil : DiffUtil.ItemCallback<Launch>() {
     override fun areItemsTheSame(
-        oldItem: GetLaunchListQuery.Launch,
-        newItem: GetLaunchListQuery.Launch
+        oldItem: Launch,
+        newItem: Launch
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: GetLaunchListQuery.Launch,
-        newItem: GetLaunchListQuery.Launch
+        oldItem: Launch,
+        newItem: Launch
     ): Boolean {
         return oldItem == newItem
     }
